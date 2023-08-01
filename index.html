@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Website</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"
+        integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a class="nav-logo" href="index.html">luxuriousgetaways.com</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about_us">About</a></li>
+                <li><a href="#city-search" onclick="openAllHotelsInNewTab()">Rooms</a></li>
+                <li><a href="#footer">Contact Us</a></li>
+                <div id="favorites-dropdown" class="dropdown-content"></div>
+                <li id="pro">
+                    <div class="dropdown">
+                        <a href="#signin" class="dropbtn">
+                            <img src="Sign in.png" alt="Sign In">
+                            <p id="email"></p>
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a href="#">favorites</a>
+                            <a href="#" id="signout">Sign Out</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <section class="welcome-section">
+        <img src="Welcome.jpeg" alt="Welcome Picture">
+        <div class="welcome-text">Luxurious Getaways</div>
+    </section>
+    <div class="sticky-wrapper">
+        <div class="search-bar">
+            <div class="input-group">
+                <label for="city-search">City:</label>
+                <input type="text" id="city-search" placeholder="Enter city name" list="hotel-names">
+                <datalist id="hotel-names"></datalist>
+            </div>
+            <div class="input-group">
+                <label for="arrival-date">Arrival Date:</label>
+                <input type="date" id="arrival-date">
+            </div>
+            <div class="input-group">
+                <label for="departure-date">Departure Date:</label>
+                <input type="date" id="departure-date">
+            </div>
+            <div class="input-group">
+                <label for="adults">Adults:</label>
+                <input type="number" id="adults" min="1" value="1">
+            </div>
+            <div class="input-group">
+                <label for="children">Children:</label>
+                <input type="number" id="children" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="room-number">Room Number:</label>
+                <input type="number" id="room-number" min="0" value="0">
+            </div>
+            <button id="book-now-button">CHECK AVAILABILITY</button>
+        </div>
+    </div>
+    <section id="about_us" class="about_us">
+        <div class="container">
+            <div class="on_the_left">
+                <div class="heading">
+                    <h1>WELCOME</h1>
+                    <h2>To Luxurrious Getaways</h2>
+                </div>
+                <div>
+                    <p>Since 1900, we are specialized in hotels reservation.Our clients from every where around the
+                        world.We are exist to made your holiday.</p>
+                </div>
+            </div>
+            <div class="on_the_right">
+                <img src="Hurghada - Planet Ware.jpg" width="100%">
+            </div>
+        </div>
+    </section>
+    <div class="main-container">
+        <div class="filter-bar">
+            <h2>Filters:</h2>
+            <div class="filter-group">
+                <label for="hotelName">Hotel Name:</label>
+                <input type="text" id="hotelName" placeholder="Enter hotel name" list="hotel-nameee">
+                <datalist id="hotel-nameee"></datalist>
+            </div>     
+            <div class="filter-group">
+                <label for="filter-country">Country:</label>
+                <input type="text" id="filter-country" placeholder="Enter country name" list="country">
+                <datalist id="country"></datalist>
+            </div>
+            <div class="filter-group">
+                <label for="filter-star-rating">Star Rating:</label>
+                <input type="number" id="filter-star-rating" min="0" max="5" step="0.5" placeholder="Enter star rating">
+            </div>
+            <div class="filter-group">
+                <label for="filter-num-reviews">Number of Reviews:</label>
+                <input type="number" id="filter-num-reviews" min="0" placeholder="Enter number of reviews">
+            </div>
+            <div class="filter-group">
+                <label for="filter-rating-average">Coast per night:</label>
+                <input type="number" id="filter-rating-average" min="0" max="100" step="0.1"
+                    placeholder="Enter rating average">
+            </div>
+            <div class="filter-group">
+                <label for="filter-rates-currency">Currency:</label>
+                <input type="text" id="filter-rates-currency" placeholder="Enter rates currency" value="USD" readonly>
+            </div>
+            <button id="filter-button">Apply Filters</button>
+        </div>
+        <div class="hotel-content">
+            <div id="hotel-cards-container"></div>
+        </div>
+    </div>
+    <footer id="footer">
+        <div class="rounded-social-buttons">
+            <a class="social-button facebook" href="https://www.facebook.com/" target="_blank"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a class="social-button twitter" href="https://www.twitter.com/" target="_blank"><i
+                    class="fab fa-twitter"></i></a>
+            <a class="social-button linkedin" href="https://www.linkedin.com/" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+            <a class="social-button youtube" href="https://www.youtube.com/" target="_blank"><i
+                    class="fab fa-youtube"></i></a>
+            <a class="social-button instagram" href="https://www.instagram.com/" target="_blank"><i
+                    class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        var email = localStorage.getItem("login");
+        if (email != null) {
+            var userEmail = document.getElementById("email");
+            userEmail.innerHTML = email;
+        }
+        var signOut = document.getElementById("signout")
+        signOut.addEventListener("click",function(){
+            localStorage.removeItem("login")
+            userEmail.innerHTML = "";
+            window.location.href = "login.html";
+        })
+
+    </script>
+</body>
+
+</html>

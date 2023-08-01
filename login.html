@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login Page</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<div class="main">  	
+		<input type="checkbox" id="check">
+		
+
+			<div class="signup">
+				<form>
+					<label for="check" >Sign up</label>
+					<input type="text" name="txt" placeholder="User name" required="" id="username">
+					<small id="small_for_userName">username is bot valid</small>
+					<input type="email" name="email" placeholder="Email" required="" id="email">
+					<small id="small_for_email">email is not valid</small>
+					<input type="password" name="pswd" placeholder="Password" required="" id="password">
+					<small id="small_for_password">password is not valid</small>
+
+					<button id="signupBtn" type="button">Sign up</button>
+					<p id="jsontext"></p>
+				</form>
+			</div>
+
+			<div class="login">
+				<form>
+					<label for="check" >Login</label>
+					<input type="email" name="email" placeholder="Email" required id="loginEmail">
+					<input type="password" name="pswd" placeholder="Password" required id="loginPassword">
+					<button id="loginBtn" type="button">Login</button>
+				</form>
+			</div>
+		</div>
+		<script src="data.js"></script>
+
+</body>
+</html>
